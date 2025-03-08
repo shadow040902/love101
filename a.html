@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <TITLE> love01 </TITLE>
+  <META CHARSET="UTF-8">
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <link rel="stylesheet" type="text/css" href="main.css">
+</HEAD>
+<BODY>
+  <div class="container">
+    <h1>Do you love me?</h1>
+    <button id="yesButton">Yes</button>
+    <button id="noButton">No</button>
+  </div>
+  <div class="hearts"></div>
+  <script>
+    document.getElementById('yesButton').addEventListener('click', function() {
+      window.location.href = 'index2.html';
+    });
+
+    document.getElementById('noButton').addEventListener('click', function() {
+      var yesButton = document.getElementById('yesButton');
+      var noButton = document.getElementById('noButton');
+      
+      var currentYesSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+      var currentNoSize = parseInt(window.getComputedStyle(noButton).fontSize);
+      
+      yesButton.style.fontSize = (currentYesSize + 10) + 'px';
+      yesButton.style.padding = (currentYesSize + 10) + 'px ' + (currentYesSize + 20) + 'px';
+      
+      noButton.style.fontSize = (currentNoSize - 2) + 'px';
+      noButton.style.padding = (currentNoSize - 2) + 'px ' + (currentNoSize - 4) + 'px';
+    });
+
+    // Heart rain effect
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+      document.querySelector('.hearts').appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+</BODY>
+</HTML>
